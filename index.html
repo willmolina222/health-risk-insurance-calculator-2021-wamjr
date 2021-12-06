@@ -1,0 +1,181 @@
+<html><head><style>
+    body {
+     background-color: greenyellow;
+    }
+    </style>
+    
+        <meta charset="UTF-8">
+       </head><body><h1 style="border:6px solid black;">Health Insurance Risk Calculator</h1>
+    
+       <h3 style="border:6px solid black"> To figure out what your risk calculation is for trying to become a new member
+    of my insurance company. Please fill out the bottom questions to the best of your abilty, so I can figure out how much I am
+    going to have to charge you. </h3>
+      
+    <h3 style="border:6px solid black" questions<="" h3="">
+    
+    
+    
+       
+       <label>Please select your age :</label><br>
+       <select id="age">
+           <option value="0">Under 30</option>
+           <option value="10">30-45</option>
+           <option value="20">46-60</option>
+           <option value="30">Over 60</option>
+       </select>
+       <br><br>
+    
+       <img src="bloodpressure.PNG" alt="Blood Presure Chart" width="400" height="200"><br>
+    
+       <label>Please select your (BPL) Blood Pressure Level:</label><br>
+       <select id="bp">
+           <option value="0">Normal </option>
+           <option value="15">Elevated  </option>
+           <option value="35">Stage 1 </option>
+           <option value="75">Stage 2 </option>
+           <option value="100">Crisis </option> 
+       </select>
+       <br><br>
+    
+       <label>What is your Height in feet?(ft):</label><br>
+       <select id="heightft">
+           <option value="48">4</option>
+           <option value="60">5</option>
+           <option value="72">6</option>
+       </select>
+       <br><br>
+    
+       <label>What is your Height in inches?(in):</label><br>
+       <select id="heightin">
+           <option value="0">0</option>
+           <option value="1">1</option>
+           <option value="2">2</option>
+           <option value="3">3</option>
+           <option value="4">4</option>
+           <option value="5">5</option>
+           <option value="6">6</option>
+           <option value="7">7</option>
+           <option value="8">8</option>
+           <option value="9">9</option>
+           <option value="10">10</option>
+           <option value="11">11</option>
+    
+       </select>
+       <br><br>
+    
+       <label for="quantity">Please select your weight in pounds(IB):</label>
+       <select id="weight">
+           <option value="105">Under 110</option>
+           <option value="110">110</option>
+           <option value="115">115</option>
+           <option value="120">120</option>
+           <option value="125">125</option>
+           <option value="130">130</option>
+           <option value="135">135</option>
+           <option value="140">140</option>
+           <option value="145">145</option>
+           <option value="150">150</option>
+           <option value="155">155</option>
+           <option value="160">160</option>
+           <option value="165">165</option>
+           <option value="170">170</option>
+           <option value="175">175</option>
+           <option value="180">180</option>
+           <option value="185">185</option>
+           <option value="190">190</option>
+           <option value="195">195</option>
+           <option value="200">200</option>
+           <option value="205">205</option>
+           <option value="210">210</option>
+           <option value="215">215</option>
+           <option value="220">220</option>
+           <option value="225">225</option>
+           <option value="230">230</option>
+           <option value="235">235</option>
+           <option value="240">240</option>
+           <option value="245">245</option>
+           <option value="250">Over 250</option>
+     
+    
+           </select>
+       <br><br>
+    
+       <label>Do you have history a diabetes?</label><br>
+       <select id="diabetes">
+           <option value="0">No</option>
+           <option value="10">Yes</option>
+    
+       </select>
+       <br><br>
+       <label>Do you a have history with cancer?</label><br>
+       <select id="cancer">
+           <option value="0">No</option>
+           <option value="10">Yes</option>
+    
+       </select>
+       <br><br>
+    
+       <label>Do you have a history with Alzheimer's?</label><br>
+       <select id="alz">
+           <option value="0">No</option>
+           <option value="10">Yes</option>
+    
+       </select>
+       <br><br>
+    
+    
+       
+       <br><br><br>
+       <button onclick="calculateRisk()"> Risk Calculation:</button>
+           <p id="output"></p>
+    
+       <script>
+       console.log("Starting Risk Calculator");
+    
+       function calculateRisk() {
+           console.log("calculateRisk()"); 
+    
+           var riskLevel='';
+           var points=0;
+           points+=parseInt(document.getElementById("age").selectedOptions[0].value);
+           points+=parseInt(document.getElementById("bp").selectedOptions[0].value);
+           var kg=parseInt(document.getElementById("weight").selectedOptions[0].value)/2.2046;
+           var meters=(parseInt(document.getElementById("heightft").selectedOptions[0].value)+parseInt(document.getElementById('heightin').selectedOptions[0].value))/39.37;
+           var bmi=(kg/(meters**2));
+    
+           points+=parseInt(document.getElementById("diabetes").selectedOptions[0].value);
+           points+=parseInt(document.getElementById("cancer").selectedOptions[0].value);
+           points+=parseInt(document.getElementById("alz").selectedOptions[0].value);
+    
+           if (bmi<=24.9){
+               points+=0
+           }
+           else if (bmi<=29.9){
+               point+=30
+           }
+           else{
+               points+=75
+           }
+           if (points<=20){
+               riskLevel="<h2 style=>Low Risk</h2>";
+           }
+           else if (points<=50){
+               riskLevel="<h2 style=>Moderate Risk</h2>";
+           }
+           else if (points<=75){
+               riskLevel="<h2 style=>High Risk</h2>";
+           }
+           else {
+               riskLevel="<h2 style=>Uninsurable</h2>";
+           }
+    
+           let result="<h2> Risk Level:"+riskLevel+"</h2>";
+    
+           document.getElementById("output").innerHTML=result;
+    
+       }    
+    
+    
+       </script>
+       
+       </h3></body></html>
